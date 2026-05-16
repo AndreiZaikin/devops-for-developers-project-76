@@ -1,4 +1,0 @@
----
-ansible_user: <your_user>
-redmine_port: 80
-redmine_db_password: <пароль_БД>

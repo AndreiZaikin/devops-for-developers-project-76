@@ -18,16 +18,19 @@
    ```bash
    ansible-galaxy install -r requirements.yml
    ```
-3. Создайте group_vars/webservers.yml из шаблона:
+3. Создайте `group_vars/webservers/vault.yml` из шаблона:
     ```bash
-    cp group_vars/webservers.yml.example group_vars/webservers.yml
+    cp group_vars/webservers/vault.yml.example group_vars/webservers/vault.yml
     ```
-    Заполните своими данными
-4. Зашифруйте файл:
+4. Сгенерируйте секретный ключ и впишите его вместе с паролем БД в `vault.yml`
     ```bash
-    ansible-vault encrypt group_vars/webservers.yml
+    openssl rand -hex 32
     ```
-5. Запустите подготовку:
+5. Зашифруйте файл `vault.yml`:
+    ```bash
+    ansible-vault encrypt group_vars/webservers/vault.yml
+    ```
+6. Запустите подготовку:
     ```bash
     make prepare
     ```

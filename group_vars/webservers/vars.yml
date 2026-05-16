@@ -1,0 +1,5 @@
+---
+ansible_user: andrei
+redmine_port: 80
+redmine_db_password: "{{ vault_redmine_db_password }}"
+secret_key_base: "{{ vault_secret_key_base }}"

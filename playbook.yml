@@ -2,7 +2,8 @@
 - hosts: all
   become: yes
   vars_files:
-    - group_vars/webservers.yml
+    - group_vars/webservers/vars.yml
+    - group_vars/webservers/vault.yml
 
   vars:
     pip_install_packages:
@@ -15,7 +16,8 @@
 - hosts: all
   become: yes
   vars_files:
-    - group_vars/webservers.yml
+    - group_vars/webservers/vars.yml
+    - group_vars/webservers/vault.yml
 
   tasks:
     - name: Create directory for Redmine

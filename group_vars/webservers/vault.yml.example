@@ -1,0 +1,3 @@
+---
+vault_redmine_db_password: <пароль_БД>
+vault_secret_key_base: <сгенерированный_ключ>
