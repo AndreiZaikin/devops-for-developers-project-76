@@ -1,9 +1,9 @@
 ---
 ansible_user: andrei
 redmine_port: 80
-redmine_db_password: "{{ vault_redmine_db_password }}"
-secret_key_base: "{{ vault_secret_key_base }}"
-datadog_api_key: "{{ vault_datadog_api_key }}"
+redmine_db_password: "{{ vault_redmine_db_password | default('test') }}"
+secret_key_base: "{{ vault_secret_key_base | default('test') }}"
+datadog_api_key: "{{ vault_datadog_api_key | default('test') }}"
 datadog_site: "datadoghq.com"
 datadog_checks:
   http_check:
@@ -12,4 +12,4 @@ datadog_checks:
       - name: Redmine
         url: http://localhost:80
         timeout: 5
-        check_certificate_expiration: false
+        collect_response_time: true
