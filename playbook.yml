@@ -3,7 +3,6 @@
   become: yes
   vars_files:
     - group_vars/webservers/vars.yml
-    - group_vars/webservers/vault.yml
 
   vars:
     pip_install_packages:
@@ -17,7 +16,6 @@
   become: yes
   vars_files:
     - group_vars/webservers/vars.yml
-    - group_vars/webservers/vault.yml
 
   tasks:
     - name: Create directory for Redmine
@@ -50,7 +48,6 @@
   become: yes
   vars_files:
     - group_vars/webservers/vars.yml
-    - group_vars/webservers/vault.yml
 
   roles:
     - datadog.datadog

@@ -1,1 +1,3 @@
 inventory.ini
+extra_vars.yml
+group_vars/webservers/vault.yml

@@ -18,37 +18,24 @@
    ```bash
    ansible-galaxy install -r requirements.yml
    ```
-3. Создайте `group_vars/webservers/vault.yml` из шаблона и заполните секреты:
-    ```bash
-    cp group_vars/webservers/vault.yml.example group_vars/webservers/vault.yml
+3. Создайте `extra_vars.yml` в корне проекта и заполните секреты:
+    ```yaml
+    vault_redmine_db_password: <пароль_БД>
+    vault_secret_key_base: <сгенерированный_ключ>
+    vault_datadog_api_key: <API-ключ_DataDog>
     ```
-    * `vault_redmine_db_password` - пароль от БД
-    * `vault_secret_key_base` — сгенерируйте ключ:
-        ```bash
-        openssl rand -hex 32
-        ```
-    * vault_datadog_api_key — API-ключ из DataDog (Organization Settings → API Keys)
-5. Зашифруйте файл `vault.yml`:
+    Секретный ключ генерируется командой:
     ```bash
-    ansible-vault encrypt group_vars/webservers/vault.yml
+    openssl rand -hex 32
     ```
+    API-ключ DataDog получается в Organization Settings → API Keys после регистрации на DataDog.
+
 ## Деплой
 
 ```bash
 make deploy
 ```
 Команда установит Docker, запустит Redmine с подключением к PostgreSQL и настроит агент DataDog.
-
-## Мониторинг
-Приложение мониторится с помощью DataDog. Агент устанавливается автоматически при деплое.
-
-1. Зарегистрируйтесь на [DataDog](https://www.datadoghq.com/)
-2. Получите API-ключ в Organization Settings → API Keys
-3. Добавьте ключ в `group_vars/webservers/vault.yml` в переменную `vault_datadog_api_key`
-4. Зашифруйте vault:
-   ```bash
-   ansible-vault encrypt group_vars/webservers/vault.yml
-   ```
 
 ## Приложение
 
